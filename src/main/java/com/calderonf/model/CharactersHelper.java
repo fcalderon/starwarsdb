@@ -66,16 +66,18 @@ public class CharactersHelper {
             statement.setString(1, characterName);
 
             ResultSet resultSet = statement.executeQuery();
-
+            String header = String.format(Locale.getDefault(),"%-10s %-20s %-40s %-4s\n", "Name", "Planet", "Movie", "Scene Length");
+            String all = "";
             while(resultSet.next()) {
-                return String.format(Locale.getDefault(),
-                        "character_name: %s\nplanet: %s\nmovie_title: %s\nscene_length: %s\n",
+                all += String.format(Locale.getDefault(),
+                        "%-10s %-20s %-40s %-4s\n",
                         resultSet.getString(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4)
                 );
             }
+            return header+all;
 
         } catch (SQLException e) {
             e.printStackTrace();
