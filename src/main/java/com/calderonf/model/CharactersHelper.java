@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 /**
+ * Character helper
  * Created on 11/16/16.
  */
 public class CharactersHelper {
     private final static String SELECT_CHARACTERS_STATEMENT = "SELECT * FROM characters";
-    private final static String TRACK_CHARACTER_STATMENT = "{ CALL track_character(?)}";
+    private final static String TRACK_CHARACTER_STATEMENT = "{ CALL track_character(?)}";
 
     /**
      * Finds all the characters in the database
@@ -61,12 +62,10 @@ public class CharactersHelper {
      * @return the result set as string
      */
     public static String trackCharacter(String characterName, Connection connection) {
-        try (CallableStatement statement = connection.prepareCall(TRACK_CHARACTER_STATMENT)) {
+        try (CallableStatement statement = connection.prepareCall(TRACK_CHARACTER_STATEMENT)) {
             statement.setString(1, characterName);
 
             ResultSet resultSet = statement.executeQuery();
-
-            StringBuilder builder = new StringBuilder();
 
             while(resultSet.next()) {
                 return String.format(Locale.getDefault(),

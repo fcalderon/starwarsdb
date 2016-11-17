@@ -5,10 +5,8 @@ import com.calderonf.model.CharactersHelper;
 import com.calderonf.util.ConnectionHelper;
 import com.calderonf.util.UserInputHelper;
 
-import java.sql.*;
+import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Scanner;
 
 /**
  * Created on 11/16/16.
@@ -54,7 +52,7 @@ public class Main {
             while (true) {
                 String characterName = inputHelper.getStringInput("Enter a character's name: ");
 
-                if ((characterName != null && password.contains("exit"))) {
+                if ((characterName != null && characterName.contains("exit"))) {
                     exit = true;
                     break;
                 }
@@ -71,28 +69,11 @@ public class Main {
                     continue;
                 }
 
-
                 System.out.println(CharactersHelper.trackCharacter(characterName, ConnectionHelper.getConnection(username, password)));
 
                 return;
             }
-
         }
-
     }
-
-    private static void connect() throws SQLException {
-        Connection connection = ConnectionHelper.getConnection("root", "root");
-        Statement stmt=connection.createStatement();
-        ResultSet rs= stmt.executeQuery("select * from emp");
-        while(rs.next()) {
-            System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
-
-        }
-        connection.close();
-
-    }
-
-
 }
 

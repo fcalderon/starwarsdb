@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * The character model
  * Created on 11/16/16.
  */
 public class Character {
@@ -27,8 +28,6 @@ public class Character {
             e.printStackTrace();
         }
     }
-
-
 
     public String getName() {
         return name;
